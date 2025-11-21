@@ -28,7 +28,7 @@ st.title("🔮 Dự đoán giá & Phát hiện giá bất thường — Xe máy 
 st.markdown("Upload file `data_motobikes.xlsx` hoặc nhập tay để dùng model đã train.")
 
 # ================== Feature lists ==================
-num_cols = ['price', 'price_min', 'price_max', 'year_reg', 'km_driven', 'cc_numeric', 'price_segment_code', 'age']
+num_cols = ['price_min', 'price_max', 'year_reg', 'km_driven', 'cc_numeric', 'price_segment_code', 'age']
 flag_cols = ["is_moi", "is_do_xe", "is_su_dung_nhieu", "is_bao_duong", "is_do_ben", "is_phap_ly"]
 cat_cols = ["brand", "vehicle_type", "model", "origin", "segment",'engine_size']
 
