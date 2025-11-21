@@ -165,12 +165,15 @@ elif choice == "Dự đoán giá xe máy":
     st.subheader("B. Nhập tay để gợi ý giá")
     # Dropdown options: prefer values from uploaded+clean dataset
     last = st.session_state.get("last_clean")
+    price = st.number_input("Giá mong muốn (triệu VND)", min_value=0.0, value=10.0, step=0.1)
+    price_min = st.number_input("Khoảng giá min (triệu VND)", min_value=0.0, value=8.0, step=0.1)
+    price_max = st.number_input("Khoảng giá max (triệu VND)", min_value=0.0, value=12.0, step=0.1)
     brands_opts = sorted(last["brand"].dropna().unique().tolist()) if last is not None and "brand" in last.columns else BRANDS
     models_opts = sorted(last["model"].dropna().unique().tolist()) if last is not None and "model" in last.columns else ["Wave","Exciter","Sirius"]
     vehicle_types_opts = sorted(last["vehicle_type"].dropna().unique().tolist()) if last is not None and "vehicle_type" in last.columns else ["Xe số","Xe tay ga","Xe côn"]
     origin_opts = sorted(last["origin"].dropna().unique().tolist()) if last is not None and "origin" in last.columns else ["Việt Nam","Nhập Khẩu"]
     segment_opts = sorted(last["segment"].dropna().unique().tolist()) if last is not None and "segment" in last.columns else ["Phổ thông","Cận cao cấp","Cao cấp"]
-
+    engine_size_sel = st.selectbox("Dung tích xe (nhãn)", options=["Dưới 50","50 - 100","100 - 175","Trên 175"], index=2)
     col1, col2 = st.columns(2)
     with col1:
         brand_inp = st.selectbox("Thương hiệu (brand)", options=brands_opts)
@@ -197,17 +200,26 @@ elif choice == "Dự đoán giá xe máy":
         is_do_ben = st.checkbox("is_do_ben", value=False)
     with r2c3:
         is_phap_ly = st.checkbox("is_phap_ly", value=True)
-
-    price_segment_code = st.number_input("Mã phân khúc (price_segment_code)", min_value=1, step=1, value=1)
     origin_inp = st.selectbox("Xuất xứ (origin)", options=origin_opts)
     segment_inp = st.selectbox("Phân khúc (segment)", options=segment_opts)
-
+    segment_map = {
+    "Phổ Thông": 1,
+    "Tầm Trung": 2,
+    "Cao Cấp": 3,}
+    price_segment_code = segment_map.get(segment_inp, 1) 
     suggestion_type = st.radio("Chọn loại gợi ý", ("Gợi ý giá bán", "Gợi ý giá mua hợp lý"))
+    
     if st.button("🔍 Dự đoán / Gợi ý"):
+        
         row = {
+            "price": price,
+            "price_min": price_min,
+            "price_max": price_max,
             "km_driven": km_driven,
+            "engine_size": engine_size_sel,
             "cc_numeric": cc_numeric,
             "age": age,
+            "year_reg": 2025 - age,
             "price_segment_code": price_segment_code,
             "is_moi": int(is_moi),
             "is_do_xe": int(is_do_xe),
@@ -305,12 +317,20 @@ elif choice == "Phát hiện xe máy bất thường":
     brand_sel = st.selectbox("Thương hiệu", options=brands_opts)
     model_sel = st.text_input("Dòng xe (Dòng xe)", value="Wave")
     year_reg = st.number_input("Năm đăng ký", min_value=1900, max_value=2025, value=2020, step=1)
+    if 2025 - year_reg == 0:
+        age = 0.5
+    else:
+        age = 2025 - year_reg
     km_driven_an = st.number_input("Số Km đã đi", min_value=0, value=5000, step=1)
     vehicle_type_sel = st.text_input("Loại xe", value="Xe số")
     engine_size_sel = st.selectbox("Dung tích xe (nhãn)", options=["Dưới 50","50 - 100","100 - 175","Trên 175"], index=2)
     origin_sel = st.selectbox("Xuất xứ", options=["Việt Nam","Nhập Khẩu"])
     segment_sel = st.selectbox("Phân khúc giá", options=["Phổ thông","Cận cao cấp","Cao cấp"])
-
+    segment_map = {
+    "Phổ Thông": 1,
+    "Tầm Trung": 2,
+    "Cao Cấp": 3,}
+    price_segment_code = segment_map.get(segment_sel, 1) 
     # flags 2x3
     st.markdown("**Tình trạng (Tick = Có / Không = Không)**")
     a1, a2, a3 = st.columns(3)
@@ -336,9 +356,10 @@ elif choice == "Phát hiện xe máy bất thường":
             "brand": brand_sel,
             "model": model_sel,
             "year_reg": year_reg,
+            "age": age,
             "km_driven": km_driven_an,
             "vehicle_type": vehicle_type_sel,
-            "Dung tích xe": engine_size_sel,
+            "engine_size": engine_size_sel,
             "cc_numeric": 137,
             "origin": origin_sel,
             "segment": segment_sel,
@@ -348,7 +369,7 @@ elif choice == "Phát hiện xe máy bất thường":
             "is_bao_duong": int(an_is_bao_duong),
             "is_do_ben": int(an_is_do_ben),
             "is_phap_ly": int(an_is_phap_ly),
-            "price_segment_code": 1,
+            "price_segment_code": price_segment_code
         }
         df_row = pd.DataFrame([row])
         df_row_prep = safe_prepare_X(df_row)
