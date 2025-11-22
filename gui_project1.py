@@ -106,7 +106,7 @@ if "last_clean" not in st.session_state:
 if choice == "Home":
     st.header("🏠 Home")
     st.write("""
-    ✔ Dự đoán giá xe dựa trên RandomForest  
+    ✔ Dự đoán giá xe (Giá bán/Giá mua)  
     ✔ Phát hiện xe đăng bán với giá bất thường  
     ✔ Tự động phân tích mô tả & phát hiện dấu hiệu đáng ngờ  
     ✔ Hỗ trợ file và cả nhập tay  
