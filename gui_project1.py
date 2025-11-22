@@ -188,7 +188,7 @@ elif choice == "Dự đoán giá xe máy":
     st.markdown("**Tình trạng (Tick = Có / Không = Không)**")
     r1c1, r1c2, r1c3 = st.columns(3)
     with r1c1:
-        is_moi = st.checkbox("Xe mới", value=False)
+        is_moi = st.checkbox("Xe còn mới", value=False)
     with r1c2:
         is_do_xe = st.checkbox("Có độ xe", value=False)
     with r1c3:
@@ -197,7 +197,7 @@ elif choice == "Dự đoán giá xe máy":
     with r2c1:
         is_bao_duong = st.checkbox("Xe có bảo dưỡng", value=False)
     with r2c2:
-        is_do_ben = st.checkbox("Xe máy còn êm", value=False)
+        is_do_ben = st.checkbox("Máy xe còn tốt", value=False)
     with r2c3:
         is_phap_ly = st.checkbox("Pháp lý rõ ràng", value=True)
     origin_inp = st.selectbox("Xuất xứ (origin)", options=origin_opts)
@@ -335,18 +335,18 @@ elif choice == "Phát hiện xe máy bất thường":
     st.markdown("**Tình trạng (Tick = Có / Không = Không)**")
     a1, a2, a3 = st.columns(3)
     with a1:
-        an_is_moi = st.checkbox("is_moi", value=False, key="an_is_moi")
+        an_is_moi = st.checkbox("Xe còn mới", value=False, key="an_is_moi")
     with a2:
-        an_is_do_xe = st.checkbox("is_do_xe", value=False, key="an_is_do_xe")
+        an_is_do_xe = st.checkbox("Có độ xe", value=False, key="an_is_do_xe")
     with a3:
-        an_is_su_dung_nhieu = st.checkbox("is_su_dung_nhieu", value=False, key="an_is_su_dung_nhieu")
+        an_is_su_dung_nhieu = st.checkbox("Xe đi nhiều", value=False, key="an_is_su_dung_nhieu")
     b1, b2, b3 = st.columns(3)
     with b1:
-        an_is_bao_duong = st.checkbox("is_bao_duong", value=False, key="an_is_bao_duong")
+        an_is_bao_duong = st.checkbox("Xe có bảo dưỡng", value=False, key="an_is_bao_duong")
     with b2:
-        an_is_do_ben = st.checkbox("is_do_ben", value=False, key="an_is_do_ben")
+        an_is_do_ben = st.checkbox("Máy xe còn tốt", value=False, key="an_is_do_ben")
     with b3:
-        an_is_phap_ly = st.checkbox("is_phap_ly", value=True, key="an_is_phap_ly")
+        an_is_phap_ly = st.checkbox("Pháp lý rõ ràng", value=True, key="an_is_phap_ly")
 
     if st.button("Kiểm tra"):
         row = {
