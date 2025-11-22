@@ -195,7 +195,7 @@ elif choice == "Dự đoán giá xe máy":
         is_su_dung_nhieu = st.checkbox("Xe đi nhiều", value=False)
     r2c1, r2c2, r2c3 = st.columns(3)
     with r2c1:
-        is_bao_duong = st.checkbox("Xe có bão dưỡng", value=False)
+        is_bao_duong = st.checkbox("Xe có bảo dưỡng", value=False)
     with r2c2:
         is_do_ben = st.checkbox("Xe máy còn êm", value=False)
     with r2c3:
