@@ -188,18 +188,18 @@ elif choice == "Dự đoán giá xe máy":
     st.markdown("**Tình trạng (Tick = Có / Không = Không)**")
     r1c1, r1c2, r1c3 = st.columns(3)
     with r1c1:
-        is_moi = st.checkbox("is_moi", value=False)
+        is_moi = st.checkbox("Xe mới", value=False)
     with r1c2:
-        is_do_xe = st.checkbox("is_do_xe", value=False)
+        is_do_xe = st.checkbox("Có độ xe", value=False)
     with r1c3:
-        is_su_dung_nhieu = st.checkbox("is_su_dung_nhieu", value=False)
+        is_su_dung_nhieu = st.checkbox("iXe đi nhiều", value=False)
     r2c1, r2c2, r2c3 = st.columns(3)
     with r2c1:
-        is_bao_duong = st.checkbox("is_bao_duong", value=False)
+        is_bao_duong = st.checkbox("Xe có bão dưỡng", value=False)
     with r2c2:
-        is_do_ben = st.checkbox("is_do_ben", value=False)
+        is_do_ben = st.checkbox("Xe máy còn êm", value=False)
     with r2c3:
-        is_phap_ly = st.checkbox("is_phap_ly", value=True)
+        is_phap_ly = st.checkbox("Pháp lý rõ ràng", value=True)
     origin_inp = st.selectbox("Xuất xứ (origin)", options=origin_opts)
     segment_inp = st.selectbox("Phân khúc (segment)", options=segment_opts)
     segment_map = {
