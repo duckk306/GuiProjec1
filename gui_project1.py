@@ -25,7 +25,7 @@ from utils_anomaly import run_price_anomaly_detection_with_reason
 st.set_page_config(page_title="Dự đoán giá & Phát hiện giá bất thường - Xe máy cũ", layout="centered")
 st.image("xe_may_cu.jpg", use_container_width=True)
 st.title("🔮 Dự đoán giá & Phát hiện giá bất thường — Xe máy cũ")
-st.markdown("Upload file `data_motobikes.xlsx` hoặc nhập tay để dùng model đã train.")
+st.markdown("Upload file  hoặc nhập tay để dùng model đã train.")
 
 # ================== Feature lists ==================
 num_cols = ['price_min', 'price_max', 'year_reg', 'km_driven', 'cc_numeric', 'price_segment_code', 'age']
@@ -113,7 +113,7 @@ if choice == "Home":
 
     👉 Chọn menu bên trái để bắt đầu!
     """)
-    st.write("Mẹo: upload file Excel (data_motobikes.xlsx) để lấy dropdown tự động cho nhập tay.")
+    st.write("Mẹo: upload file Excel để lấy dropdown tự động cho nhập tay.")
 
 # ------------------ PREDICTION PAGE ------------------
 elif choice == "Dự đoán giá xe máy":
