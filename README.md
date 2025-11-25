@@ -13,7 +13,7 @@ Toàn bộ ứng dụng chạy bằng 1 file duy nhất `gui_project1.py`.
 
 Từ thư mục chứa gui_project1.py, chạy:
 
-streamlit run gui_project1.py
+**streamlit run gui_project1.py**
 
 
 Ứng dụng sẽ mở tại:
