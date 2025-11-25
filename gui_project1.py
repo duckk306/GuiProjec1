@@ -327,8 +327,8 @@ if st.session_state.get("predicted_df") is None:
 menu = [
     "Home",
     "Dự đoán giá xe máy",
-    "Đăng bán",
-    "Đăng mua",
+    "Tin đăng bán",
+    "Tin đăng mua",
     "Phát hiện xe máy bất thường",
     "Duyệt tin (QTV)",
     "Thông tin tác giả"
@@ -514,7 +514,7 @@ elif choice == "Dự đoán giá xe máy":
 
 # ------------------ Đăng bán / Đăng mua (user view) ------------------
 elif choice == "Đăng bán":
-    st.header("📢 Tin đăng bán (Người dùng)")
+    st.header("📢 Tin đăng bán")
     # Show approved posts only
     posts = _read_xlsx_if_exists(APPROVED_SELL_XLSX)
     posts = normalize_datetime_like_columns(posts)
@@ -538,7 +538,7 @@ elif choice == "Đăng bán":
         st.download_button("⬇️ Tải tin đăng bán (Excel)", df_to_excel_bytes(posts), file_name="posts_sell.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 elif choice == "Đăng mua":
-    st.header("📣 Tin đăng mua (Người dùng)")
+    st.header("📣 Tin đăng mua")
     posts = _read_xlsx_if_exists(APPROVED_BUY_XLSX)
     posts = normalize_datetime_like_columns(posts)
     if posts.empty:
