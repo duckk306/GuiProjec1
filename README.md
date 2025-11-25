@@ -9,12 +9,23 @@
 -   👤 **Trang thông tin tác giả**
 
 Toàn bộ ứng dụng chạy bằng 1 file duy nhất `gui_project1.py`.
+## ⚙️ Yêu cầu môi trường
+
+### 🧩 Cài đặt thư viện cần thiết
+```bash
+pip install pandas numpy scikit-learn lightgbm xgboost pyspark matplotlib seaborn joblib
+```
+
+Hoặc, nếu bạn dùng `requirements.txt`:
+```bash
+pip install -r requirements.txt
+```
 ▶️ 2. Chạy ứng dụng
 
 Từ thư mục chứa gui_project1.py, chạy:
-
-**streamlit run gui_project1.py**
-
+```bash
+streamlit run gui_project1.py
+```
 
 Ứng dụng sẽ mở tại:
 
@@ -24,108 +35,108 @@ https://guiprojec1-5t2i6nz849hazftzu4d79x.streamlit.app/
 
 Ứng dụng sẽ tự tạo các file Excel sau:
 
-posts_sell.xlsx
-posts_buy.xlsx
-approved_posts_for_sale.xlsx
-approved_posts_for_buy.xlsx
-rejected_posts.xlsx
+`posts_sell.xlsx`
+`posts_buy.xlsx`
+`approved_posts_for_sale.xlsx`
+`approved_posts_for_buy.xlsx`
+`rejected_posts.xlsx`
 
 
 Model machine learning:
 
-model_randomforest.pkl
+`model_randomforest.pkl`
 
 
 Dữ liệu mẫu để load model:
 
-data_motobikes.xlsx
+`data_motobikes.xlsx`
 
 🧠 4. Các chức năng chính
 🔮 1. Dự đoán giá xe máy
 
-Người dùng chọn thông số xe (hãng, dòng xe, km đã đi, tình trạng…)
+   🔹 Người dùng chọn thông số xe (hãng, dòng xe, km đã đi, tình trạng…)
 
-Model RandomForest dự đoán giá thị trường
+   🔹 Model RandomForest dự đoán giá thị trường
 
-Gợi ý:
+   🔹 Gợi ý:
 
-Giá bán hợp lý
+             🔹 Giá bán hợp lý
 
-Giá mua hợp lý
+             🔹 Giá mua hợp lý
 
-Hiển thị cả:
+   🔹 Hiển thị cả:
 
-Giá dự đoán
+             🔹 Giá dự đoán
 
-Khoảng giá gợi ý
+             🔹 Khoảng giá gợi ý
 
-Risk Score (độ rủi ro)
+   🔹 Risk Score (độ rủi ro)
 
-Lý do bất thường (nếu có)
+   🔹 Lý do bất thường (nếu có)
 
 📢 2. Đăng tin bán / đăng tin mua
 
-Sau khi dự đoán giá, người dùng có thể:
+ 🔹 Sau khi dự đoán giá, người dùng có thể:
 
-Chọn giá đăng: giá nhập hoặc giá dự đoán
+ 🔹 Chọn giá đăng: giá nhập hoặc giá dự đoán
 
-Nhập ID người đăng + ghi chú
+ 🔹 Nhập ID người đăng + ghi chú
 
-Tin được lưu vào file Excel và nằm trong trạng thái pending.
+ 🔹 Tin được lưu vào file Excel và nằm trong trạng thái pending.
 
 🔧 3. Quản trị viên duyệt tin (QTV)
 
-Có đăng nhập (tài khoản được khai báo trong code)
+     🔹 Có đăng nhập (tài khoản được khai báo trong code)
 
-QTV có thể:
+     🔹 QTV có thể:
 
-✔ Duyệt tin (tự động chuyển sang file approved)
+                  ✔ Duyệt tin (tự động chuyển sang file approved)
 
-❌ Từ chối tin (chuyển sang file rejected)
+                  ❌ Từ chối tin (chuyển sang file rejected)
 
-Chọn nhiều dòng một lúc
+      🔹Chọn nhiều dòng một lúc
 
-UI sử dụng st.data_editor mới
+      🔹 UI sử dụng st.data_editor mới
 
 🚨 4. Phát hiện giá bất thường
 
-Kiểm tra:
+       🔹 Kiểm tra:
 
-giá quá chênh lệch so với giá dự đoán
+               🔹 giá quá chênh lệch so với giá dự đoán
 
-km không hợp lý so với tuổi xe
+               🔹 km không hợp lý so với tuổi xe
 
-độ rủi ro theo model
+               🔹 độ rủi ro theo model
 
-dòng xe không phù hợp với hãng
+               🔹 dòng xe không phù hợp với hãng
 
-Tính mức:
+       🔹 Tính mức:
 
-⚠ An toàn
+                ⚠ An toàn
 
-🚧 Đáng chú ý
+                🚧 Đáng chú ý
 
-🔥 Nguy hiểm
+                🔥 Nguy hiểm
 
-Hiển thị lý do chi tiết
+       🔹 Hiển thị lý do chi tiết
 
 👤 5. Trang tác giả
 
-Chứa thông tin thành viên nhóm.
+     🔹 Chứa thông tin thành viên nhóm.
 
 🧩 5. Cấu trúc mã nguồn
 
-Phần dự đoán giá
-Chuẩn hóa input → chuẩn hóa features → chạy model → hiển thị kết quả.
-
-Phần đăng tin
-Ghi tin đăng vào file Excel → hiển thị trong màn user → chờ QTV duyệt.
-
-Phần QTV
-Dùng st.data_editor để cho phép tick chọn → duyệt/từ chối → lưu file tương ứng.
-
-Phần anomaly
-Dùng logic trong utils_anomaly.py + risk scoring.
+        **Phần dự đoán giá**
+        Chuẩn hóa input → chuẩn hóa features → chạy model → hiển thị kết quả.
+        
+        **Phần đăng tin**
+        Ghi tin đăng vào file Excel → hiển thị trong màn user → chờ QTV duyệt.
+        
+        **Phần QTV**
+        Dùng st.data_editor để cho phép tick chọn → duyệt/từ chối → lưu file tương ứng.
+        
+        **Phần anomaly**
+        Dùng logic trong utils_anomaly.py + risk scoring.
 
 🔑 6. Tài khoản admin mẫu
 admin / 123456
