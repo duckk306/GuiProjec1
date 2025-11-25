@@ -532,7 +532,7 @@ elif choice == "Đăng bán":
 
         # Giữ đúng cột + đổi tên tiếng Việt
         posts_show = posts_show[show_cols]
-        posts_show = rename_columns_vn(posts_show)
+        posts_show = rename_columns_vn(posts_show, mode = "sell")
 
         st.dataframe(posts_show.reset_index(drop=True), use_container_width=True)
         st.download_button("⬇️ Tải tin đăng bán (Excel)", df_to_excel_bytes(posts), file_name="posts_sell.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
@@ -553,7 +553,7 @@ elif choice == "Đăng mua":
 
         posts_show = posts.copy()
         posts_show = posts_show[show_cols]
-        posts_show = rename_columns_vn(posts_show)
+        posts_show = rename_columns_vn(posts_show, mode = "buy")
 
         st.dataframe(posts_show.reset_index(drop=True), use_container_width=True)
         st.download_button("⬇️ Tải tin đăng mua (Excel)", df_to_excel_bytes(posts), file_name="posts_buy.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
