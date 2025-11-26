@@ -327,8 +327,8 @@ if st.session_state.get("predicted_df") is None:
 menu = [
     "Home",
     "Dự đoán giá xe máy",
-    "Tin đăng bán",
-    "Tin đăng mua",
+    "Đăng bán",
+    "Đăng mua",
     "Phát hiện xe máy bất thường",
     "Duyệt tin (QTV)",
     "Thông tin tác giả"
@@ -514,7 +514,7 @@ elif choice == "Dự đoán giá xe máy":
 
 # ------------------ Đăng bán / Đăng mua (user view) ------------------
 elif choice == "Đăng bán":
-    st.header("📢 Tin đăng bán")
+    st.header("📢 Tin đăng bán (Người dùng)")
     # Show approved posts only
     posts = _read_xlsx_if_exists(APPROVED_SELL_XLSX)
     posts = normalize_datetime_like_columns(posts)
@@ -532,13 +532,13 @@ elif choice == "Đăng bán":
 
         # Giữ đúng cột + đổi tên tiếng Việt
         posts_show = posts_show[show_cols]
-        posts_show = rename_columns_vn(posts_show, mode = "sell")
+        posts_show = rename_columns_vn(posts_show, mode="sell")
 
         st.dataframe(posts_show.reset_index(drop=True), use_container_width=True)
         st.download_button("⬇️ Tải tin đăng bán (Excel)", df_to_excel_bytes(posts), file_name="posts_sell.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 elif choice == "Đăng mua":
-    st.header("📣 Tin đăng mua")
+    st.header("📣 Tin đăng mua (Người dùng)")
     posts = _read_xlsx_if_exists(APPROVED_BUY_XLSX)
     posts = normalize_datetime_like_columns(posts)
     if posts.empty:
@@ -553,7 +553,7 @@ elif choice == "Đăng mua":
 
         posts_show = posts.copy()
         posts_show = posts_show[show_cols]
-        posts_show = rename_columns_vn(posts_show, mode = "buy")
+        posts_show = rename_columns_vn(posts_show, mode="buy")
 
         st.dataframe(posts_show.reset_index(drop=True), use_container_width=True)
         st.download_button("⬇️ Tải tin đăng mua (Excel)", df_to_excel_bytes(posts), file_name="posts_buy.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
